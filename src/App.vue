@@ -4,7 +4,8 @@ export default {
     return {
       message: 'Hello Vue!',
       status: 'active',
-      tasks: ['Task one', 'Task two', 'Task three']
+      tasks: ['Task one', 'Task two', 'Task three'],
+      link: 'https://shivamtaneja.com/'
     }
   }
 }
@@ -21,4 +22,7 @@ export default {
   <ul>
     <li v-for="task in tasks" :key="task">{{ task }}</li>
   </ul>
+
+  <!-- <a v-bind:href="link" target="_blank">Click for my webstie</a> -->
+  <a :href="link" target="_blank">Click for my webstie</a>
 </template>
