@@ -1,22 +1,29 @@
 <script>
+import { ref } from 'vue';
+
 export default {
-  data() {
-    return {
-      message: 'Hello Vue!',
-      status: 'active',
-      tasks: ['Task one', 'Task two', 'Task three'],
-      link: 'https://shivamtaneja.com/'
-    }
-  },
-  methods: {
-    toggleStatus() {
-      if (this.status === 'active') {
-        this.status = 'pending';
-      } else if (this.status === 'active') {
-        this.status = 'inactive';
+  setup() {
+    const message = ref('Hello Composition API');
+    const status = ref('active');
+    const link = ref('https://shivamtaneja.com/');
+    const tasks = ref(['Task 1', 'Task 2', 'Task 3']);
+
+    const toggleStatus = () => {
+      if (status.value === 'active') {
+        status.value = 'pending';
+      } else if (status.value === 'active') {
+        status.value = 'inactive';
       } else {
-        this.status = 'active';
+        status.value = 'active';
       }
+    }
+
+    return {
+      message,
+      status,
+      link,
+      tasks,
+      toggleStatus
     }
   }
 }
@@ -34,9 +41,7 @@ export default {
     <li v-for="task in tasks" :key="task">{{ task }}</li>
   </ul>
 
-  <!-- <a v-bind:href="link" target="_blank">Click for my webstie</a> -->
   <a :href="link" target="_blank">Click for my webstie</a>
 
-  <!-- <button v-on:click="toggleStatus">Change status</button> -->
   <button @click="toggleStatus">Change status</button>
 </template>
