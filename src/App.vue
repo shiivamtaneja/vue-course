@@ -7,6 +7,17 @@ export default {
       tasks: ['Task one', 'Task two', 'Task three'],
       link: 'https://shivamtaneja.com/'
     }
+  },
+  methods: {
+    toggleStatus() {
+      if (this.status === 'active') {
+        this.status = 'pending';
+      } else if (this.status === 'active') {
+        this.status = 'inactive';
+      } else {
+        this.status = 'active';
+      }
+    }
   }
 }
 </script>
@@ -25,4 +36,7 @@ export default {
 
   <!-- <a v-bind:href="link" target="_blank">Click for my webstie</a> -->
   <a :href="link" target="_blank">Click for my webstie</a>
+
+  <!-- <button v-on:click="toggleStatus">Change status</button> -->
+  <button @click="toggleStatus">Change status</button>
 </template>
