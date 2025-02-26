@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 
 const message = ref("Hello Composition API");
 const status = ref("active");
@@ -29,11 +29,22 @@ const deleteTask = (idx) => {
 };
 
 const updateTask = (idx) => {
-  if(newTask.value.trim() !== "") {
+  if (newTask.value.trim() !== "") {
     tasks.value[idx] = newTask.value;
     newTask.value = "";
   }
 };
+
+onMounted(async () => {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+
+    const data = await response.json();
+    tasks.value = data.map((task) => task.title);
+  } catch (err) {
+    console.error("Error fetching tasks", err);
+  }
+});
 </script>
 
 <template>
