@@ -1,20 +1,20 @@
 <script setup>
-import { ref } from 'vue';
+import { ref } from "vue";
 
-const message = ref('Hello Composition API');
-const status = ref('active');
-const link = ref('https://shivamtaneja.com/');
-const tasks = ref(['Task 1', 'Task 2', 'Task 3']);
+const message = ref("Hello Composition API");
+const status = ref("active");
+const link = ref("https://shivamtaneja.com/");
+const tasks = ref(["Task 1", "Task 2", "Task 3"]);
 
 const toggleStatus = () => {
-  if (status.value === 'active') {
-    status.value = 'pending';
-  } else if (status.value === 'active') {
-    status.value = 'inactive';
+  if (status.value === "active") {
+    status.value = "pending";
+  } else if (status.value === "active") {
+    status.value = "inactive";
   } else {
-    status.value = 'active';
+    status.value = "active";
   }
-}
+};
 </script>
 
 <template>
@@ -22,9 +22,9 @@ const toggleStatus = () => {
 
   <p v-if="status === 'active'">User is active</p>
   <p v-else-if="status === 'pending'">User is pending</p>
-  <p v-else="status">User is inactive</p>
+  <p v-else>User is inactive</p>
 
-  <h3>Taks: </h3>
+  <h3>Taks:</h3>
   <ul>
     <li v-for="task in tasks" :key="task">{{ task }}</li>
   </ul>
