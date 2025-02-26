@@ -1,30 +1,18 @@
-<script>
+<script setup>
 import { ref } from 'vue';
 
-export default {
-  setup() {
-    const message = ref('Hello Composition API');
-    const status = ref('active');
-    const link = ref('https://shivamtaneja.com/');
-    const tasks = ref(['Task 1', 'Task 2', 'Task 3']);
+const message = ref('Hello Composition API');
+const status = ref('active');
+const link = ref('https://shivamtaneja.com/');
+const tasks = ref(['Task 1', 'Task 2', 'Task 3']);
 
-    const toggleStatus = () => {
-      if (status.value === 'active') {
-        status.value = 'pending';
-      } else if (status.value === 'active') {
-        status.value = 'inactive';
-      } else {
-        status.value = 'active';
-      }
-    }
-
-    return {
-      message,
-      status,
-      link,
-      tasks,
-      toggleStatus
-    }
+const toggleStatus = () => {
+  if (status.value === 'active') {
+    status.value = 'pending';
+  } else if (status.value === 'active') {
+    status.value = 'inactive';
+  } else {
+    status.value = 'active';
   }
 }
 </script>
