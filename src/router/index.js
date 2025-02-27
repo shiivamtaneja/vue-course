@@ -14,14 +14,19 @@ const router = createRouter({
       path: '/jobs',
       children: [
         {
+          path: '',
+          name: 'jobs',
+          component: () => import('@/views/JobsView.vue'),
+        },
+        {
           path: 'add',
           name: 'add-job',
           component: () => import('@/views/AddJobView.vue'),
         },
         {
-          path: '',
-          name: 'jobs',
-          component: () => import('@/views/JobsView.vue'),
+          path: 'edit/:id',
+          name: 'edit-job',
+          component: () => import('@/views/EditJobView.vue'),
         },
         {
           path: ':id',
