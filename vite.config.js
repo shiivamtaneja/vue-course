@@ -16,6 +16,9 @@ export default defineConfig(({ mode }) => {
       tailwindcss()
     ],
     server: {
+      watch: {
+        ignored: ['src/jobs.json']
+      },
       port: 3000,
       proxy: {
         '/api': {
