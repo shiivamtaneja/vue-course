@@ -18,9 +18,7 @@ const state = reactive({
 
 onMounted(async () => {
   try {
-    const response = await axios.get(
-      `${import.meta.env.VITE_API_BACKEND_URL}/jobs/${jobID}`
-    );
+    const response = await axios.get(`/api/jobs/${jobID}`);
 
     state.job = response.data;
   } catch (err) {
@@ -36,30 +34,30 @@ onMounted(async () => {
 
   <div
     v-if="state.isLoading || !state.job"
-    class="text-center text-gray-500 py-6"
+    class="py-6 text-center text-gray-500"
   >
     <PulseLoader />
   </div>
 
   <section v-else class="bg-green-50">
-    <div class="container m-auto py-10 px-6">
+    <div class="container px-6 py-10 m-auto">
       <div class="grid grid-cols-1 md:grid-cols-[70%_28%] w-full gap-6">
         <main>
           <div
-            class="bg-white p-6 rounded-lg shadow-md text-center md:text-left"
+            class="p-6 text-center bg-white rounded-lg shadow-md md:text-left"
           >
-            <div class="text-gray-500 mb-4">{{ state.job.type }}</div>
-            <h1 class="text-3xl font-bold mb-4">{{ state.job.title }}</h1>
+            <div class="mb-4 text-gray-500">{{ state.job.type }}</div>
+            <h1 class="mb-4 text-3xl font-bold">{{ state.job.title }}</h1>
             <div
-              class="text-gray-500 mb-4 flex align-middle justify-center md:justify-start"
+              class="flex justify-center mb-4 text-gray-500 align-middle md:justify-start"
             >
-              <i class="pi pi-map-marker text-xl text-orange-700 mr-2"></i>
+              <i class="mr-2 text-xl text-orange-700 pi pi-map-marker"></i>
               <p class="text-orange-700">{{ state.job.location }}</p>
             </div>
           </div>
 
-          <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-            <h3 class="text-green-800 text-lg font-bold mb-6">
+          <div class="p-6 mt-6 bg-white rounded-lg shadow-md">
+            <h3 class="mb-6 text-lg font-bold text-green-800">
               Job Description
             </h3>
 
@@ -67,7 +65,7 @@ onMounted(async () => {
               {{ state.job.description }}
             </p>
 
-            <h3 class="text-green-800 text-lg font-bold mb-2">Salary</h3>
+            <h3 class="mb-2 text-lg font-bold text-green-800">Salary</h3>
 
             <p class="mb-4">{{ state.job.salary }} / Year</p>
           </div>
@@ -76,8 +74,8 @@ onMounted(async () => {
         <!-- Sidebar -->
         <aside>
           <!-- Company Info -->
-          <div class="bg-white p-6 rounded-lg shadow-md">
-            <h3 class="text-xl font-bold mb-6">Company Info</h3>
+          <div class="p-6 bg-white rounded-lg shadow-md">
+            <h3 class="mb-6 text-xl font-bold">Company Info</h3>
 
             <h2 class="text-2xl">{{ state.job.company.name }}</h2>
 
@@ -89,28 +87,28 @@ onMounted(async () => {
 
             <h3 class="text-xl">Contact Email:</h3>
 
-            <p class="my-2 bg-green-100 p-2 font-bold">
+            <p class="p-2 my-2 font-bold bg-green-100">
               {{ state.job.company.contactEmail }}
             </p>
 
             <h3 class="text-xl">Contact Phone:</h3>
 
-            <p class="my-2 bg-green-100 p-2 font-bold">
+            <p class="p-2 my-2 font-bold bg-green-100">
               {{ state.job.company.contactPhone }}
             </p>
           </div>
 
           <!-- Manage -->
-          <div class="bg-white p-6 rounded-lg shadow-md mt-6">
-            <h3 class="text-xl font-bold mb-6">Manage Job</h3>
+          <div class="p-6 mt-6 bg-white rounded-lg shadow-md">
+            <h3 class="mb-6 text-xl font-bold">Manage Job</h3>
             <RouterLink
               :to="`/jobs/edit/${state.job.id}`"
-              class="bg-green-500 hover:bg-green-600 text-white text-center font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+              class="block w-full px-4 py-2 mt-4 font-bold text-center text-white bg-green-500 rounded-full hover:bg-green-600 focus:outline-none focus:shadow-outline"
               >Edit Job</RouterLink
             >
             <button
               @click="deleteJob"
-              class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
+              class="block w-full px-4 py-2 mt-4 font-bold text-white bg-red-500 rounded-full hover:bg-red-600 focus:outline-none focus:shadow-outline"
             >
               Delete Job
             </button>

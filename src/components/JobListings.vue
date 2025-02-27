@@ -22,9 +22,7 @@ const state = reactive({
 
 onMounted(async () => {
   try {
-    const response = await axios.get(
-      `${import.meta.env.VITE_API_BACKEND_URL}/jobs`
-    );
+    const response = await axios.get("/api/jobs");
 
     state.jobs = response.data;
   } catch (err) {
@@ -36,17 +34,17 @@ onMounted(async () => {
 </script>
 
 <template>
-  <section class="bg-green-50 px-4 py-10">
-    <div class="container-xl lg:container m-auto">
-      <h2 class="text-3xl font-bold text-green-500 mb-6 text-center">
+  <section class="px-4 py-10 bg-green-50">
+    <div class="m-auto container-xl lg:container">
+      <h2 class="mb-6 text-3xl font-bold text-center text-green-500">
         Browse Jobs
       </h2>
 
-      <div v-if="state.isLoading" class="text-center text-gray-500 py-6">
+      <div v-if="state.isLoading" class="py-6 text-center text-gray-500">
         <PulseLoader />
       </div>
 
-      <div v-else class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div v-else class="grid grid-cols-1 gap-6 md:grid-cols-3">
         <JobListing
           v-for="job in state.jobs.slice(0, limit || state.jobs.length)"
           :key="job.id"
@@ -56,10 +54,10 @@ onMounted(async () => {
     </div>
   </section>
 
-  <section v-if="showButton" class="m-auto max-w-lg my-10 px-6">
+  <section v-if="showButton" class="max-w-lg px-6 m-auto my-10">
     <RouterLink
       to="/jobs"
-      class="block bg-black text-white text-center py-4 px-6 rounded-xl hover:bg-gray-700"
+      class="block px-6 py-4 text-center text-white bg-black rounded-xl hover:bg-gray-700"
     >
       View All Jobs
     </RouterLink>
