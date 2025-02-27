@@ -1,7 +1,7 @@
 <script setup>
-import router from "@/router";
 import axios from "axios";
 import { reactive } from "vue";
+import { useRouter } from "vue-router";
 import { useToast } from "vue-toastification";
 
 const form = reactive({
@@ -19,6 +19,7 @@ const form = reactive({
 });
 
 const toast = useToast();
+const router = useRouter();
 
 const handleFormSubmit = async () => {
   const newJob = {
